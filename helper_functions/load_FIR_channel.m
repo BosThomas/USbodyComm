@@ -183,8 +183,9 @@ distance = tmp{3};  %#ok<NASGU>
 % ---------------------------------------------------------------------- %
 % LOAD EXPERIMENT
 % ---------------------------------------------------------------------- %
-exp = load(strcat('data/',commConcept,'/',expName));
-if isempty(exp)
+try
+    exp = load(strcat('data/',commConcept,'/',expName));
+catch E
     error('Experiment name "%s" does not exist. Refer to documentation for valid names',expName);
 end
 
@@ -217,3 +218,4 @@ end
 %   v1.0, 15-11-2018    Start of script: documentation, data loading,
 %                       output processing.
 %   v1.1, 19-11-2018    Documentation update
+%                       Added try-catch around "load"
