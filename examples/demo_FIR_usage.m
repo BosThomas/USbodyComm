@@ -1,16 +1,29 @@
 % DEMO FIR CHANNEL USAGE
 %
-%   This script provides a demo on a simple passband BPSK signalthat is 
+%   This script provides a demo on a simple passband BPSK signalthat is
 %   transmitted through a selected FIR channel.
 %
 %   Created Nov 19, 2018 by Thomas Bos
 %   Last edited Nov 19, 2018
 %   Version 1.0
 %
-% Copyright (c) Thomas Bos, Wim Dehaene, Marian Verhelst
+% ISC License
+% Copyright (c) 2018, Thomas Bos, Wim Dehaene, Marian Verhelst
 % Katholieke Universiteit Leuven, ESAT-MICAS
 % Kasteelpark Arenberg 10
 % 3001 Heverlee, Leuven, Belgium
+%
+% Permission to use, copy, modify, and/or distribute this software for any
+% purpose with or without fee is hereby granted, provided that the above
+% copyright notice and this permission notice appear in all copies.
+%
+% THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+% WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+% MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+% ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+% WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+% ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+% OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 %
 % CHANGELOG
 %----------
@@ -27,7 +40,7 @@ expName = 'charac_water_40';    % unique experiment name [string]
                                 % here: the pure water 40mm distance case
                                 % for more info, see load_FIR_channel.m doc
 N = 10e3;           % number of transmitted bits
-fs_bb = 100e3;      % baseband sampling frequency [Hz]                         
+fs_bb = 100e3;      % baseband sampling frequency [Hz]
 fc = 1.12e6;        % center frequency [Hz]
 Nplot = 1e3;        % number of points used for plotting
 
@@ -61,16 +74,16 @@ chan_delay = chan_lag/fs_chan;      % delay of channel [s]
 fprintf(' delay of channel: %3.4f us \n',chan_delay*1e6);
 %  A small sidenote on the channel delay:
 %   The channel delay will always be close to 30us, for any experiment at
-%   any transmission distance. This is due to the specific FIR estimation 
+%   any transmission distance. This is due to the specific FIR estimation
 %   procedure carried out in these experiments. This way, a good estimate
 %   on the FIR impulse response was achieved containing its main path and
 %   following reflecting paths.
 %
-%   In case you specifically wants to use the correct main-pulse latency, 
-%   you should calculate the present channel delay (see code above) and 
+%   In case you specifically wants to use the correct main-pulse latency,
+%   you should calculate the present channel delay (see code above) and
 %   then insert the correct latency using a c = 1480m/s propagation speed.
 
-% 2) Attenuation 
+% 2) Attenuation
 chan_gain = rms(pb_rx)/rms(pb_tx);
 fprintf(' passband gain of channel: %3.4f V/V (%2.2f dB) \n',chan_gain,20*log10(chan_gain));
 
@@ -99,8 +112,8 @@ xlabel('Frequency [MHz]'); ylabel('Amplitude [dB]');
 legend('tx passband','rx passband');
 title('Single sided waveform spectrum');
 
-% 2) channel plot 
-subplot(212);   
+% 2) channel plot
+subplot(212);
 f_sc = 1e-6;                        % frequency scale of plot
 [H,f] = freqz(h,1,Nplot,fs_chan);
 plot(f_sc*f,20*log10(abs(H)));

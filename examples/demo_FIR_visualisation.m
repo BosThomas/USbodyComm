@@ -7,10 +7,24 @@
 %   Last edited Nov 19, 2018
 %   Version 1.0
 %
-% Copyright (c) Thomas Bos, Wim Dehaene, Marian Verhelst
-% Katholieke Universiteit Leuven, ESAT-MICAS
+% ISC license
+%
+% Copyright (c) 2018, Thomas Bos
+% KU Leuven, ESAT-MICAS
 % Kasteelpark Arenberg 10
 % 3001 Heverlee, Leuven, Belgium
+%
+% Permission to use, copy, modify, and/or distribute this software for any
+% purpose with or without fee is hereby granted, provided that the above
+% copyright notice and this permission notice appear in all copies.
+%
+% THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+% WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+% MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+% ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+% WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+% ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+% OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 %
 % CHANGELOG
 %----------
@@ -43,7 +57,7 @@ figure('name','channel visualisation');
 %   1) time-domain
 subplot(211);
 h_dc = mean(h);                 % DC gain of impulse response
-stem(0:L-1,h-h_dc);       
+stem(0:L-1,h-h_dc);
 grid on;
 xlabel('Samples'); ylabel('FIR coefficients');
 title('Impulse response');
@@ -60,7 +74,7 @@ title('Single sided channel spectrum');
 
 
 %% DEMO2: Visualise FIR variance over time
-%  The second demo visualses two impulse responses which are captured 
+%  The second demo visualses two impulse responses which are captured
 %  approx 1 second apart. As a result, you get an insight in the experiment
 %  datastructure that is used for the different experiments.
 %
@@ -76,7 +90,7 @@ expName = 'charac_water_40';    % unique experiment name [string]
                                 % here: the pure water 40mm distance case
                                 % for more info, see load_FIR_channel.m doc
 Nplot = 1e3;                    % number of points used for plotting
-     
+
 %   Load experiment datastructure
 [~,~,exp] = load_FIR_channel(expName);
 %   Select two different impulse responses
@@ -87,7 +101,7 @@ h2 = exp.FIR1.h(2,:);
 figure('name','time variance FIR');
 %   1) time-domain
 subplot(211);
-stem(h1-mean(h1)); hold on;   
+stem(h1-mean(h1)); hold on;
 stem(h2-mean(h2));
 xlabel('Samples'); ylabel('FIR coefficients');
 title('impulse response short-time variation'); grid on;
@@ -99,7 +113,7 @@ f_sc = 1e-6;        % frequency scale
 [H2,f2] = freqz(h2,1,Nplot,fs);
 plot(f_sc*f1,20*log10(abs(H1))); hold on;
 plot(f_sc*f2,20*log10(abs(H2)));
-grid on; 
+grid on;
 ylim([-70 -20]);
 xlabel('Frequency [MHz]'); ylabel('Magnitude [dB]');
 title('Single sided channel spectrum');

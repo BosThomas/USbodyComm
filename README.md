@@ -15,8 +15,8 @@ The helper scripts and example scripts are written in matlab scripting language.
 
 ## Documentation
 
-A description of the different FIR channel models can be found on [this page](doc/readme.md), together with photographs taken during the measurement campaign.
+A full description of the different FIR channel models can be found on [this page](doc/readme.md), together with photographs taken during the measurement campaign.
 
 ## Examples
 
-Example scripts on how to visualize the FIR channels, or how to use them in your communication modem, are provided in the examples folder.
+Example scripts on how to visualize the FIR channels, or how to use them in your communication modem, are provided in the examples/  folder.
